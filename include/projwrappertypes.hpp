@@ -23,6 +23,8 @@ struct xy_t {
 	double distance_squared(const xy_t& other) const;
 
 	bool operator==(const xy_t& other) const;
+
+	constexpr xy_t& operator=(const xy_t&) = default;
 };
 
 struct geo_t {
@@ -33,6 +35,8 @@ struct geo_t {
 	geo_t(geo_t&&) = default;
 	geo_t(const geo_t&) = default;
 	geo_t(double lambda, double phi);
+
+	constexpr geo_t& operator=(const geo_t&) = default;
 };
 
 struct geo_degrees_t {
@@ -43,6 +47,8 @@ struct geo_degrees_t {
 	geo_degrees_t(geo_degrees_t&&) = default;
 	geo_degrees_t(const geo_degrees_t&) = default;
 	geo_degrees_t(double lon, double lat);
+
+	constexpr geo_degrees_t& operator=(const geo_degrees_t&) = default;
 
 	geo_t to_radians() const;
 };
