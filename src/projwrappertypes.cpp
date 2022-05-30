@@ -9,6 +9,11 @@ using projwrapper::deg2rad;
 
 
 
+xy_t::xy_t(double x, double y) : x(x), y(y)
+{
+}
+
+
 double xy_t::distance(const xy_t& other) const
 {
 	return std::sqrt(distance_squared(other));
@@ -25,6 +30,11 @@ double xy_t::distance_squared(const xy_t& other) const
 bool xy_t::operator==(const xy_t& other) const
 {
 	return (x == other.x) && (y == other.y);
+}
+
+
+geo_t::geo_t(double lambda, double phi) : lambda(lambda), phi(phi)
+{
 }
 
 

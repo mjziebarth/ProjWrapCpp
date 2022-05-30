@@ -13,6 +13,8 @@ struct xy_t {
 	double x;
 	double y;
 
+	xy_t(double x, double y);
+
 	double distance(const xy_t& other) const;
 
 	double distance_squared(const xy_t& other) const;
@@ -23,6 +25,8 @@ struct xy_t {
 struct geo_t {
 	double lambda;
 	double phi;
+
+	geo_t(double lambda, double phi);
 };
 
 struct geo_degrees_t {
