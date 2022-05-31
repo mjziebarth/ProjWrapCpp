@@ -96,7 +96,6 @@ static void parse_proj_str_for_a_f(const char* proj_str, double& a, double& f)
 PJContainer::PJContainer(const char* proj_str)
    : context(nullptr), projection(nullptr), _a(0.0), _f(0.0)
 {
-	std::cout << "proj_str: '" << proj_str << "'\n" << std::flush;
 	/* Create the multi-threading context: */
 	context = proj_context_create();
 	if (!context){
