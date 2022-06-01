@@ -57,6 +57,7 @@ public:
 	xy_t project(const geo_degrees_t& lola) const;
 
 	geo_t inverse(const xy_t& xy_t) const;
+	void inverse(double x, double y, double& lam, double& phi) const;
 
 	double a() const;
 	double f() const;

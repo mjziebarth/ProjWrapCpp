@@ -284,6 +284,15 @@ geo_t ProjWrapper::inverse(const xy_t& xy) const
 }
 
 
+void ProjWrapper::inverse(double x, double y, double& lam, double& phi) const
+{
+	xy_t xy(x,y);
+	geo_t geo(inverse(xy));
+	lam = geo.lambda;
+	phi = geo.phi;
+}
+
+
 double ProjWrapper::a() const
 {
 	return proj_source->a();
