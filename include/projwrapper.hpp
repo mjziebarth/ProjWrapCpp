@@ -51,8 +51,8 @@ public:
     ProjWrapper(const ProjWrapper& other);
     ~ProjWrapper();
 
-    void project(double lon, double lat, double& x, double& y) const;
-    xy_t project(double lon, double lat) const;
+    void project(double lam, double phi, double& x, double& y) const;
+    xy_t project(double lam, double phi) const;
 	xy_t project(const geo_t& lola) const;
 	xy_t project(const geo_degrees_t& lola) const;
 
