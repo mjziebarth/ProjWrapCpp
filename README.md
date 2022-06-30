@@ -69,6 +69,8 @@ public:
 ```
 Coordinates `lam`, `phi`, and `geo_t` are expected in radians, `geo_degrees_t` in arc degrees.
 
+If the creation of the `PJ` object or a coordinate transformation fails, an instance of `projwrapper::ProjError` is thrown.
+
 ## License
 `ProjWrapCpp` is licensed under the European Public License (EUPL) version 1.2 or later. See the LICENSE file in the project root directory.
 
