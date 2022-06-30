@@ -1,0 +1,77 @@
+# ProjWrapCpp
+This project provides a C++ class, `ProjWrapper`, that encapsulates the projection
+objects from C API defined in `<proj.h>` of the PROJ library. The code provides
+lifetime handling of the `PJ` object within the `PJContainer`, constructing a
+C++ projection object from PROJ4 strings, and convenient projection facilities.
+
+## Usage
+This projects exports the `libprojwrap_dep` Meson dependency so that this
+Git repository can be included as a Meson subproject using a `libprojwrap.wrap`
+file like this:
+```
+[wrap-git]
+url = git@github.com:mjziebarth/ProjWrapCpp.git
+revision = head
+```
+Once installed, the following API can be included from `<include/projwrapper.hpp>`:
+```cpp
+struct xy_t {
+	double x;
+	double y;
+
+	xy_t(double x, double y);
+
+	double distance(const xy_t& other) const;
+
+	double distance_squared(const xy_t& other) const;
+
+	bool operator==(const xy_t& other) const;
+
+	constexpr xy_t& operator=(const xy_t&) = default;
+};
+
+struct geo_t {
+	double lambda;
+	double phi;
+
+	geo_t(double lambda, double phi);
+};
+
+struct geo_degrees_t {
+	double lon;
+	double lat;
+
+	geo_degrees_t(double lon, double lat);
+
+	geo_t to_radians() const;
+};
+
+
+class ProjWrapper {
+public:
+	ProjWrapper(const char* proj_str);
+
+	void project(double lam, double phi, double& x, double& y) const;
+	xy_t project(double lam, double phi) const;
+	xy_t project(const geo_t& lola) const;
+	xy_t project(const geo_degrees_t& lola) const;
+
+	geo_t inverse(const xy_t& xy_t) const;
+	void inverse(double x, double y, double& lam, double& phi) const;
+
+	double a() const;
+	double f() const;
+}
+```
+Coordinates `lam`, `phi`, and `geo_t` are expected in radians, `geo_degrees_t` in arc degrees.
+
+## License
+`ProjWrapCpp` is licensed under the European Public License (EUPL) version 1.2 or later. See the LICENSE file in the project root directory.
+
+## Changelog
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+### [1.0.0] - 2022-06-30
+#### Added
+- First version.
