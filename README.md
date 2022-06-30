@@ -15,6 +15,8 @@ revision = head
 ```
 Once installed, the following API can be included from `<include/projwrapper.hpp>`:
 ```cpp
+namespace projwrapper {
+
 struct xy_t {
 	double x;
 	double y;
@@ -61,6 +63,8 @@ public:
 
 	double a() const;
 	double f() const;
+}
+
 }
 ```
 Coordinates `lam`, `phi`, and `geo_t` are expected in radians, `geo_degrees_t` in arc degrees.
