@@ -281,12 +281,17 @@ xy_t ProjWrapper::project(const geo_degrees_t& lola) const
 
 geo_t ProjWrapper::inverse(const xy_t& xy) const
 {
-	if (proj_errno(workhorse))
+	if (proj_errno(workhorse)){
+		proj_errno_reset(workhorse);
 		throw ProjError("Error state set before inverse.");
+	}
 	PJ_COORD from(proj_coord(xy.x, xy.y, 0.0, 0.0));
 	PJ_COORD to(proj_trans(workhorse, PJ_INV, from));
 	int err = proj_errno(workhorse);
 	if (err){
+		/* Reset the error: */
+		proj_errno_reset(workhorse);
+
 		/* Throw error with indicating the PROJ error.
 		 * The thread-safe proj_context_errno_string routine was added
 		 * only in PROJ version 8.0.0. If the local version is older,

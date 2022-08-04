@@ -78,6 +78,12 @@ If the creation of the `PJ` object or a coordinate transformation fails, an inst
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.1.0] - 2022-08-04
+#### Changed
+- Reset the error state in `inverse` before throwing the error. This allows to
+  recover by handling the exception, a vital point to test the validity of
+  `xy_t` coordinates by inverting.
+
 ### [1.0.0] - 2022-06-30
 #### Added
 - First version.
