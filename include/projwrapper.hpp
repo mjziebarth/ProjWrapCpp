@@ -54,11 +54,14 @@ public:
 	double a() const;
 	double f() const;
 
+	bool has_inverse() const;
+
 private:
     PJ_CONTEXT* context;
     PJ* projection;
     double _a;
     double _f;
+    bool _has_inverse;
 };
 
 
@@ -76,6 +79,7 @@ public:
 
 	geo_t inverse(const xy_t& xy_t) const;
 	void inverse(double x, double y, double& lam, double& phi) const;
+	bool has_inverse() const;
 
 	double a() const;
 	double f() const;

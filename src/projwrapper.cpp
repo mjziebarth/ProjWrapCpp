@@ -112,7 +112,8 @@ static void parse_proj_str_for_a_f(const char* proj_str, double& a, double& f)
 
 
 PJContainer::PJContainer(const char* proj_str)
-   : context(nullptr), projection(nullptr), _a(0.0), _f(0.0)
+   : context(nullptr), projection(nullptr), _a(0.0), _f(0.0),
+     _has_inverse(false)
 {
 	/* Create the multi-threading context: */
 	context = proj_context_create();
@@ -125,6 +126,11 @@ PJContainer::PJContainer(const char* proj_str)
 	if (!projection){
 		throw ProjError("Could not create PROJ string.");
 	}
+
+	/* Ensure that the projection has an inverse: */
+	PJ_PROJ_INFO info(proj_pj_info(projection));
+	if (info.has_inverse)
+		_has_inverse = true;
 
 	/* Get the ellipsoid through the CRS: */
 	PJ* crs = proj_get_source_crs(context, projection);
@@ -197,6 +203,10 @@ double PJContainer::f() const
 	return _f;
 }
 
+bool PJContainer::has_inverse() const
+{
+	return _has_inverse;
+}
 
 
 
@@ -325,4 +335,10 @@ double ProjWrapper::a() const
 double ProjWrapper::f() const
 {
 	return proj_source->f();
+}
+
+
+bool ProjWrapper::has_inverse() const
+{
+	return proj_source->has_inverse();
 }
