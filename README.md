@@ -79,6 +79,10 @@ If the creation of the `PJ` object or a coordinate transformation fails, an inst
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [1.3.0] - 2023-01-13
+#### Changed
+- Change the Meson definition and ensure linking with `libproj`.
+
 ### [1.2.0] - 2022-08-04
 #### Added
 - Added querying of projection inverse availability.
