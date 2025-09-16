@@ -27,8 +27,7 @@ libprojwrap = static_library(
     'projwrap',
     sources : sources,
     include_directories : inc,
-    dependencies : dep_proj,
-    install : true
+    dependencies : dep_proj
 )
 
 libprojwrap_dep = declare_dependency(

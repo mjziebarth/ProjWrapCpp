@@ -87,6 +87,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Changed
 - Enable `constexpr` for some of the small-body functions and methods.
+- Do not install the static library by default (`install: true`). That did not make sense; its purpose is to be linked anyway.
 
 ### [1.3.1] - 2023-01-17
 #### Changed
