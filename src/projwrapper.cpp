@@ -186,31 +186,6 @@ PJContainer::~PJContainer() {
 }
 
 
-const PJ* PJContainer::get() const
-{
-	return projection;
-}
-
-
-double PJContainer::a() const
-{
-	return _a;
-}
-
-
-double PJContainer::f() const
-{
-	return _f;
-}
-
-bool PJContainer::has_inverse() const
-{
-	return _has_inverse;
-}
-
-
-
-
 ProjWrapper::ProjWrapper(const char* proj_str)
    : proj_source(std::make_shared<PJContainer>(proj_str)),
      context(nullptr), workhorse(nullptr)

@@ -49,12 +49,25 @@ class PJContainer {
 public:
     PJContainer(const char* proj_str);
     ~PJContainer();
-    const PJ* get() const;
+    constexpr const PJ* get() const noexcept
+    {
+        return projection;
+    }
 
-	double a() const;
-	double f() const;
+    constexpr double a() const noexcept
+    {
+        return _a;
+    }
 
-	bool has_inverse() const;
+    constexpr double f() const noexcept
+    {
+        return _f;
+    }
+
+    constexpr bool has_inverse() const noexcept
+    {
+        return _has_inverse;
+    }
 
 private:
     PJ_CONTEXT* context;
